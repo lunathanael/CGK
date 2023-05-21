@@ -63,6 +63,24 @@ struct GAMESTATE {
 	}
 };
 
+static constexpr int get_card_suit(CARDS card) {
+	return ((card - 1) / 13);
+}
+
+static constexpr int get_card_rank(CARDS card) {
+	return ((card - 1) % 13);
+}
+
+
+#define ENABLE_INCR_OPERATORS_ON(T)                                \
+inline T& operator++(T& d) { return d = T(int(d) + 1); }           \
+inline T& operator--(T& d) { return d = T(int(d) - 1); }
+
+
+ENABLE_INCR_OPERATORS_ON(CARDS)
+ENABLE_INCR_OPERATORS_ON(PILES)
+ENABLE_INCR_OPERATORS_ON(SUITS)
+
 
 
 #endif
