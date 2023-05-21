@@ -15,10 +15,52 @@ static constexpr int MAX_PILE_SIZE = (CARDS_IN_SUIT + NUMBER_OF_PILES);
 
 
 enum CARDS : int {
-	CA, C2, C3, C4, C5, C6, C7, C8, C9, CT, CJ, CQ, CK,
+	NO_CARD, CA, C2, C3, C4, C5, C6, C7, C8, C9, CT, CJ, CQ, CK,
 	SA, S2, S3, S4, S5, S6, S7, S8, S9, ST, SJ, SQ, SK,
 	DA, D2, D3, D4, D5, D6, D7, D8, D9, DT, DJ, DQ, DK,
-	HA, H2, H3, H4, H5, H6, H7, H8, H9, HT, HJ, HQ, HK, NO_CARD
+	HA, H2, H3, H4, H5, H6, H7, H8, H9, HT, HJ, HQ, HK
+};
+
+// left to right
+enum PILES : int {
+	PILE1, PILE2, PILE3, PILE4, PILE5, PILE6, PILE7
+};
+
+
+struct DECK {
+	CARDS cards[ALL_DECKS_SIZE];
+	int currentCard = 0;
+};
+
+struct FOUNDATION {
+	CARDS stack[CARDS_IN_SUIT];
+	int cards = 0;
+};
+
+struct STOCK {
+	CARDS stack[STOCK_SIZE];
+	int cardsLeft = STOCK_SIZE;
+	int faceCard = -1; // No card at -1 and STOCK_SIZE
+};
+
+struct PILE {
+	CARDS pile[MAX_PILE_SIZE];
+	int revealed = 0;
+	int cardNumber = 0;
+};
+
+struct GAMESTATE {
+	FOUNDATION foundations[NUMBER_OF_SUITS];
+	STOCK stock;
+	PILE piles[NUMBER_OF_PILES];
+	int moves = 0;
+	int game_result = 0;
+	GAMESTATE() {
+		for (int i = 0; i < NUMBER_OF_PILES; ++i) {
+			piles[i].revealed = i; // by index
+			piles[i].cardNumber = i + 1;
+		}
+	}
 };
 
 
