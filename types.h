@@ -34,6 +34,7 @@ enum PILES : int {
 
 struct DECK {
 	CARDS cards[ALL_DECKS_SIZE];
+	int currentCard = 0;
 };
 
 struct FOUNDATION {
