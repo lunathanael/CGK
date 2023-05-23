@@ -21,6 +21,11 @@ enum CARDS : int {
 	HA, H2, H3, H4, H5, H6, H7, H8, H9, HT, HJ, HQ, HK
 };
 
+enum SUITS : int {
+	CLUBS, SPADES, DIAMONDS, HEARTS
+}; // 00 01 10 11
+
+
 // left to right
 enum PILES : int {
 	PILE1, PILE2, PILE3, PILE4, PILE5, PILE6, PILE7
@@ -29,7 +34,6 @@ enum PILES : int {
 
 struct DECK {
 	CARDS cards[ALL_DECKS_SIZE];
-	int currentCard = 0;
 };
 
 struct FOUNDATION {
