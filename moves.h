@@ -98,7 +98,7 @@ static inline bool Foundation_to_pile(PILE* pile, FOUNDATION* foundation, int fo
 				return false;
 			}
 			else {
-				bool card_is_one_higher = (get_card_rank(foundation_card + 1)) == (get_card_rank(pile->pile[pile->cardNumber - 1]));
+				bool card_is_one_higher = (get_card_rank(foundation_card) + 1) == (get_card_rank(pile->pile[pile->cardNumber - 1]));
 				if (!card_is_one_higher) {
 					return false;
 				}
