@@ -4,6 +4,7 @@
 
 #include "types.h"
 #include "gamestate.h"
+#include "moves.h"
 
 
 using namespace std;
@@ -15,6 +16,12 @@ int main() {
 
 	GAMESTATE gamestate;
 	Start_game(&gamestate);
-	Print_gamestate(&gamestate);
+
+	while (1) {
+		getchar();
+		Print_gamestate(&gamestate);
+		Turn_stock(&gamestate.stock);
+		Stock_to_foundation(&gamestate);
+	}
 	return 0;
 }

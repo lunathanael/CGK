@@ -21,6 +21,10 @@ enum CARDS : int {
 	HA, H2, H3, H4, H5, H6, H7, H8, H9, HT, HJ, HQ, HK
 };
 
+enum RANKS : int {
+	ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, NO_RANK
+};
+
 enum SUITS : int {
 	CLUBS, SPADES, DIAMONDS, HEARTS
 }; // 00 01 10 11
