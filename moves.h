@@ -60,6 +60,64 @@ static inline bool Stock_to_foundation(GAMESTATE* gamestate) {
 	return false;
 }
 
+static inline bool Pile_to_foundation(GAMESTATE* gamestate, int pile_index) {
+	PILE* pile = &gamestate->piles[pile_index];
+	if (pile->cardNumber != 0) { // cards exist
+		CARDS pile_card = pile->pile[pile->cardNumber - 1]; // Top card
+		int foundation_index = get_card_suit(pile_card);
+		FOUNDATION* foundation = &gamestate->foundations[foundation_index];
+
+		bool card_is_one_higher = (get_card_rank(pile_card) == foundation->cards);
+		if (!card_is_one_higher) {
+			return false;
+		}
+
+		// add foundation card;
+		foundation->stack[foundation->cards] = pile_card;
+		++foundation->cards;
+
+		// remove pile card
+		--pile->cardNumber;
+		pile->pile[pile->cardNumber] = NO_CARD;
+		//Update_pile(pile);
+		return true;
+	}
+	return false;
+}
+
+static inline bool Foundation_to_pile(PILE* pile, FOUNDATION* foundation, int foundationIndex) {
+	if (foundation->cards != 0) { // cards exist
+		CARDS foundation_card = foundation->stack[foundation->cards - 1]; // Top card
+
+		if (pile->cardNumber == 0 && get_card_rank(foundation_card) != KING) {
+			return false;
+		}
+		else {
+			bool is_not_same_suit = ((foundationIndex >> 1) ^ (get_card_suit(pile->pile[pile->cardNumber - 1]) >> 1));
+			if (is_not_same_suit) {
+				return false;
+			}
+			else {
+				bool card_is_one_higher = (get_card_rank(foundation_card + 1)) == (get_card_rank(pile->pile[pile->cardNumber - 1]));
+				if (!card_is_one_higher) {
+					return false;
+				}
+			}
+		}
+
+		// add pile card
+		pile->pile[pile->cardNumber] = foundation_card;
+		++pile->cardNumber;
+		//Update_pile(pile);
+
+		// remove foundation card;
+		--foundation->cards;
+		foundation->stack[foundation->cards] = NO_CARD;
+		return true;
+	}
+	return false;
+}
+
 
 
 
