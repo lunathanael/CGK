@@ -82,7 +82,8 @@ void Print_gamestate(GAMESTATE* gamestate, bool hidden) {
 }
 
 
-void Start_game(GAMESTATE* gamestate) {
+GAMESTATE Start_game() {
+    GAMESTATE gamestate;
 
 
     DECK deck;
@@ -96,14 +97,14 @@ void Start_game(GAMESTATE* gamestate) {
         ++pile;
         deck.currentCard += (pile);
         CARDS* end = (deck.cards + deck.currentCard);
-        copy(start, end, gamestate->piles[pile - 1].pile);
+        copy(start, end, gamestate.piles[pile - 1].pile);
     }
 
     // rest into stock
     CARDS* start = (deck.cards + deck.currentCard);
     deck.currentCard += STOCK_SIZE;
     CARDS* end = (deck.cards + deck.currentCard);
-    copy(start, end, gamestate->stock.stack);
+    copy(start, end, gamestate.stock.stack);
 
-    return;
+    return gamestate;
 }

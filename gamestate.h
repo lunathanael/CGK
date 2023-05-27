@@ -4,7 +4,7 @@
 #include "types.h"
 
 /* FUNCTIONS */
-void Start_game(GAMESTATE* gamestate);
+GAMESTATE Start_game();
 
 void Print_gamestate(GAMESTATE* gamestate, bool hidden = true);
 
