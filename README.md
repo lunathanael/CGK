@@ -47,7 +47,7 @@ Contributions to enhance the functionality or efficiency of the Klondike Solitai
 This project is licensed under the MIT License - see the LICENSE.md file for details.
 
 ### Contact
-Nathanael Lu - info@lunathanael.dev
+Nathanael Lu - [Email](mailto::info@lunathanael.dev)\
 Check out my [website](https://lunathanael.dev)
 
 Project [Link](https://github.com/lunathanael/Klondike)
